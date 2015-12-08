@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Math.random and Arrays</title>
+<style type="text/css">
+	#itemTitle {margin-top: 25px; width: 500px; text-align: center; font-family: arial; font-size: 20px; font-weight: bold}
+	#itemDescription{width: 500px; text-align: center; font-family: arial; font-size: 14px}
+	#btnContainer {height: 35px; width: 500px; text-align: center}
+</style>
+<script type="text/javascript">
+
+if (window.addEventListener) {
+    // DOM2 standard
+   window.addEventListener("load", loadEventListeners, false);
+}
+else  {
+    // Microsoft's precursor to it, IE8 and earlier
+    window.attachEvent("onload", loadEventListeners);
+}
+
+
+function loadEventListeners() {
+	if(document.addEventListener) {
+	   document.getElementById("winnerBtn").addEventListener("click", youWon, false);
+	}
+	
+	else{
+	   document.getElementById("winnerBtn").attachEvent("onclick", youWon);
+	}
+
+}
+
+/*if(document.images) {
+    var pic1 = new Image();
+	pic1.src = "images/rubberbands.jpg";
+	
+	    var pic2 = new Image();
+	pic2.src = "images/italy.jpg";
+	
+	    var pic3 = new Image();
+	pic3.src = "images/box.jpg";
+	
+	    var pic4 = new Image();
+	pic4.src = "images/beachHome.jpg";
+	
+	    var pic5 = new Image();
+	pic5.src = "images/fishDecor.jpg";
+	
+	    var pic6 = new Image();
+	pic6.src = "images/lottery.jpg";
+} */ // the above code is the traditional way of preloading images. The while loop below can be used in place of this code.
+
+var prize = ["images/rubberbands.jpg", "images/italy.jpg", "images/box.jpg", "images/beachHome.jpg", "images/fishDecor.jpg", "images/lottery.jpg"];
+
+var i=-1;
+while(++i<prize.length) {
+ //alert(prize[i]);
+ 
+ eval("var pic" + i + "= new Image();");// when your string values contain javascript code, you need to use the eval method to interpret the string as javascript code
+
+  eval("pic" + i + ".src=prize[i]"); 
+ 
+
+}
+
+function youWon() {
+   var prizeTitle = new Array();
+   prizeTitle[0] = "Congratulations!!! <br /> You've won rubberbands!!";
+   prizeTitle[1] = "Congratulations!!! <br /> You've won trip to Italy!!";
+   prizeTitle[2] = "Congratulations!!! <br /> You've won empty box!!";
+   prizeTitle[3] = "Congratulations!!! <br /> You've won beach home!!";
+   prizeTitle[4] = "Congratulations!!! <br /> You've won fucking fishes!!";
+   prizeTitle[5] = "Congratulations!!! <br /> You've won the lottery!!";
+   
+   var prizeDesc = new Array();
+   prizeDesc[0] = "rubberbands description!!";
+   prizeDesc[1] = "Italy description!!";
+   prizeDesc[2] = "Box description!!";
+   prizeDesc[3] = "Beach Nigga description!!";
+   prizeDesc[4] = "Fucking Fishes description!!";
+   prizeDesc[5] = "Lottery description!!";
+   
+   //Math.random() pulls a decimal value between .01^16 to .9^16
+   var itemWon = Math.floor(Math.random() * prize.length);
+   //alert(prizeTitle[itemWon]);
+   document.getElementById("itemTitle").innerHTML= prizeTitle[itemWon];
+   document.getElementById("theImage").src = prize[itemWon];
+   document.getElementById("itemDescription").innerHTML= prizeDesc[itemWon];  
+   
+}
+
+</script>
+
+</head>
+<body>
+<div id="itemTitle"></div><br />
+<img src="images/win.jpg" id="theImage" /> <br />
+<div id="itemDescription"></div> <br />
+<div id="btnContainer">
+
+	<input type="button" value="Click on the Button and See Whatya' Won!!!" id="winnerBtn">
+</div>
+</body>
+</html>
